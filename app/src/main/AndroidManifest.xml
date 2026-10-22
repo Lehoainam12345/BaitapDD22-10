@@ -11,8 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Baitapdd2210">
+
+        <!-- 1. Đặt RegisterActivity làm màn hình LAUNCHER khởi chạy đầu tiên -->
         <activity
-            android:name=".MainActivity"
+            android:name=".RegisterActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
@@ -21,6 +23,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- 2. DetailActivity -->
+        <activity
+            android:name=".DetailActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>
