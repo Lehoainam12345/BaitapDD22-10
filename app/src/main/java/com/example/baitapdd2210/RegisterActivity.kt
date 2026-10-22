@@ -1,7 +1,5 @@
 package com.example.baitapdd2210
 
-
-
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -32,22 +30,28 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun setupListeners() {
+        // Nút Đăng ký: Kiểm tra Validation rồi mới chuyển màn hình
         binding.btnRegister.setOnClickListener {
             if (validateForm()) {
-                val intent = Intent(this, DetailActivity::class.java).apply {
-                    putExtra("EXTRA_NAME", binding.edtName.trimmedText())
-                    putExtra("EXTRA_EMAIL", binding.edtEmail.trimmedText())
-                    putExtra("EXTRA_PHONE", binding.edtPhone.trimmedText())
-                    putExtra("EXTRA_MSV", binding.edtMsv.trimmedText())
-                    putExtra("EXTRA_CLASS", binding.edtClass.trimmedText())
-                }
-                startActivity(intent)
+                sendDataToDetail()
             }
         }
 
+        // Nút Mở thẳng Chi tiết: Truyền dữ liệu hiện tại sang (không bắt buộc validate)
         binding.btnGoToDetail.setOnClickListener {
-            startActivity(Intent(this, DetailActivity::class.java))
+            sendDataToDetail()
         }
+    }
+
+    private fun sendDataToDetail() {
+        val intent = Intent(this, DetailActivity::class.java).apply {
+            putExtra("EXTRA_NAME", binding.edtName.trimmedText())
+            putExtra("EXTRA_EMAIL", binding.edtEmail.trimmedText())
+            putExtra("EXTRA_PHONE", binding.edtPhone.trimmedText())
+            putExtra("EXTRA_MSV", binding.edtMsv.trimmedText())
+            putExtra("EXTRA_CLASS", binding.edtClass.trimmedText())
+        }
+        startActivity(intent)
     }
 
     private fun validateForm(): Boolean {
